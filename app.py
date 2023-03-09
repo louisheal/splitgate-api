@@ -12,5 +12,5 @@ header = {"TRN-Api-Key":os.getenv("api_key")}
 @app.route('/')
 def home():
     response = requests.get(url + '/' + platform + '/' + username, headers = header)
-    response = jsonify(response)
+    response = jsonify(response.json())
     return response
