@@ -19,7 +19,7 @@ def home():
     else:
         return "Argument \"platform\" not set", 400
 
-"""Splitagte is only available on PC/Steam Xbox and Playstation"""
+"""Splitagte is only available on PC/Steam Xbox and PlayStation"""
 def validate_platform(platform):
     return platform in ['steam', 'xbl', 'psn']
 
