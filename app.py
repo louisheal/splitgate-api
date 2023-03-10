@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-url = """https://public-api.tracker.gg/v2/splitgate/standard/profile"""
+url = "https://public-api.tracker.gg/v2/splitgate/standard/profile"
 header = {'TRN-Api-Key':os.getenv('api_key')}
 
 @app.route('/')
@@ -19,8 +19,10 @@ def home():
     else:
         return "Argument \"platform\" not set", 400
 
+"""Splitagte is only available on PC/Steam Xbox and Playstation"""
 def validate_platform(platform):
     return platform in ['steam', 'xbl', 'ps4']
 
+"""SteamID64 usernames are only made up of digits"""
 def validate_username(username):
     return username.isdigit()
