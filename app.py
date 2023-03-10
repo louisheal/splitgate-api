@@ -4,15 +4,15 @@ import os
 
 app = Flask(__name__)
 
-url = 'https://public-api.tracker.gg/v2/splitgate/standard/profile'
-header = {"TRN-Api-Key":os.getenv("api_key")}
+url = """https://public-api.tracker.gg/v2/splitgate/standard/profile"""
+header = {'TRN-Api-Key':os.getenv('api_key')}
 
 @app.route('/')
 def home():
     args = request.args
-    if "platform" in args and validate_platform(args.get("platform")):
-        if "username" in args and validate_username(args.get("username")):
-            response = requests.get(url + '/' + args.get("platform") + '/' + args.get("username"), headers = header)
+    if 'platform' in args and validate_platform(args.get('platform')):
+        if 'username' in args and validate_username(args.get('username')):
+            response = requests.get(url + '/' + args.get('platform') + '/' + args.get('username'), headers = header)
             return response
         else:
             return "Argument \"username\" not set", 400
