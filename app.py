@@ -5,12 +5,16 @@ import os
 app = Flask(__name__)
 
 url = 'https://public-api.tracker.gg/v2/splitgate/standard/profile'
-platform = 'steam'
-username = '76561198059390699'
 header = {"TRN-Api-Key":os.getenv("api_key")}
 
 @app.route('/')
 def home():
-    response = requests.get(url + '/' + platform + '/' + username, headers = header)
-    response = jsonify(response.json())
-    return response
+    args = request.args
+    if "platform" in args:
+        if "username" in args:
+            response = requests.get(url + '/' + args.get("platform") + '/' + args.get("username"), headers = header)
+            return response
+        else:
+            return "Argument \"username\" not set", 400
+    else:
+        return "Argument \"platform\" not set", 400
