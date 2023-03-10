@@ -21,7 +21,7 @@ def home():
 
 """Splitagte is only available on PC/Steam Xbox and Playstation"""
 def validate_platform(platform):
-    return platform in ['steam', 'xbl', 'ps4']
+    return platform in ['steam', 'xbl', 'psn']
 
 """SteamID64 usernames are only made up of digits"""
 def validate_username(username):
