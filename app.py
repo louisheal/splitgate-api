@@ -10,11 +10,17 @@ header = {"TRN-Api-Key":os.getenv("api_key")}
 @app.route('/')
 def home():
     args = request.args
-    if "platform" in args:
-        if "username" in args:
+    if "platform" in args and validate_platform(args.get("platform")):
+        if "username" in args and validate_username(args.get("username")):
             response = requests.get(url + '/' + args.get("platform") + '/' + args.get("username"), headers = header)
             return response
         else:
             return "Argument \"username\" not set", 400
     else:
         return "Argument \"platform\" not set", 400
+
+def validate_platform(platform):
+    return platform in ['steam', 'xbl', 'ps4']
+
+def validate_username(username):
+    return username.isdigit()
