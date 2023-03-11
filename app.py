@@ -11,9 +11,11 @@ header = {'TRN-Api-Key':os.getenv('api_key')}
 def home():
     args = request.args
     if 'platform' in args and validate_platform(args.get('platform')):
-        if 'username' in args and validate_username(args.get('username')):
-            response = requests.get(url + '/' + args.get('platform') + '/' + args.get('username'), headers = header)
-            return response
+        platform = args.get('platform')
+        if 'username' in args and validate_username(str(args.get('username')), platform):
+            username = str(args.get('username'))
+            response = requests.get(url + '/' + platform + '/' + username, headers = header)
+            return response.json(), 200
         else:
             return "Argument \"username\" not set", 400
     else:
@@ -24,5 +26,7 @@ def validate_platform(platform):
     return platform in ['steam', 'xbl', 'psn']
 
 """SteamID64 usernames are only made up of digits"""
-def validate_username(username):
-    return username.isdigit()
+def validate_username(username, platform):
+    if platform == 'steam':
+        return username.isdigit()
+    return username.isalnum()
