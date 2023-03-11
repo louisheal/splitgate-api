@@ -22,13 +22,12 @@ def home():
     response = requests.get(f"{url}/{platform}/{username}", headers = header)
     return response.json(), 200
 
+# SteamID64 usernames are only made up of digits
+# Xbox Gamertags and PSN Ids are alphanumeric
 def invalid_username(username, platform):
     """WARNING: Always validate the platform first."""
     if platform == 'steam':
-        # SteamID64 usernames are only made up of digits
         return not username.isdigit()
-    # platform must be 'xbl' or 'psn'
-    # Xbox Gamertags and PSN Ids are alphanumeric
     return not username.isalnum()
 
 # Splitagte is only available on Steam/PC, Xbox and PlayStation
