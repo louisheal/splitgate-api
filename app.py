@@ -30,6 +30,6 @@ def invalid_username(username, platform):
         return not username.isdigit()
     return not username.isalnum()
 
-# Splitagte is only available on Steam/PC, Xbox and PlayStation
+# Splitgate is only available on Steam/PC, Xbox and PlayStation
 def invalid_platform(platform):
     return platform not in ['steam', 'xbl', 'psn']
