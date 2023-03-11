@@ -10,4 +10,5 @@ Platform can be any one of 'steam', 'xbl' or 'psn' which correspond to Steam/PC,
 
 Username is the username of your account on that platform: SteamID64 for Steam/PC, Xbox Gamertag for Xbox Live and PSN Id for PlayStation.
 
-For example, to access LJRex's Splitgate stats on Steam, you would make the following web request `GET https://splitgate-api.onrender.com/?platform=steam&username=76561198059390699`.
+For example, to access LJRex's Splitgate stats on Steam, you would make the following web request:
+`GET https://splitgate-api.onrender.com/?platform=steam&username=76561198059390699`.
