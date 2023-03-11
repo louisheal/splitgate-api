@@ -1,10 +1,10 @@
 # Splitgate API
-Proxy server for Tracker GGs Split Gate API
+A proxy server for Tracker GGs Split Gate API
 
-The server can be found running [here](https://splitgate-api.onrender.com/).
+The service can be found running on `https://splitgate-api.onrender.com/`.
 
 ## Usage
-The server currently takes two URL parameters: 'platform' and 'username'.
+The API currently requires two URL parameters: 'platform' and 'username'.
 
 Platform can be any one of 'steam', 'xbl' or 'psn' which correspond to Steam/PC, Xbox Live and PlayStation respectively.
 
