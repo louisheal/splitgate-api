@@ -1,7 +1,7 @@
 # Splitgate API
 Proxy server for Tracker GGs Split Gate API
 
-The server can be found running (here)[https://splitagte-api.onrender.com/].
+The server can be found running [here](https://splitgate-api.onrender.com/).
 
 ## Usage
 The server currently takes two URL parameters 'platform' and 'username'.
