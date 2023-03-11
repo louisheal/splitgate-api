@@ -10,23 +10,26 @@ header = {'TRN-Api-Key':os.getenv('api_key')}
 @app.route('/')
 def home():
     args = request.args
-    if 'platform' in args and validate_platform(args.get('platform')):
-        platform = args.get('platform')
-        if 'username' in args and validate_username(str(args.get('username')), platform):
-            username = str(args.get('username'))
-            response = requests.get(url + '/' + platform + '/' + username, headers = header)
-            return response.json(), 200
-        else:
-            return "Argument \"username\" not set", 400
-    else:
-        return "Argument \"platform\" not set", 400
 
-"""Splitagte is only available on PC/Steam Xbox and PlayStation"""
-def validate_platform(platform):
-    return platform in ['steam', 'xbl', 'psn']
+    if 'platform' not in args or invalid_platform(args.get('platform')):
+        return "Argument \"platform\" is either missing or incorrect.", 400
+    
+    if 'username' not in args or invalid_username(str(args.get('username')), args.get('platform')):
+        return "Argument \"username\" is either missing or incorrect.", 400
 
-"""SteamID64 usernames are only made up of digits"""
-def validate_username(username, platform):
+    username, platform = str(args.get('username')), args.get('platform')
+
+    response = requests.get(f"{url}/{platform}/{username}", headers = header)
+    return response.json(), 200
+
+# SteamID64 usernames are only made up of digits
+# Xbox Gamertags and PSN Ids are alphanumeric
+def invalid_username(username, platform):
+    """WARNING: Always validate the platform first."""
     if platform == 'steam':
-        return username.isdigit()
-    return username.isalnum()
+        return not username.isdigit()
+    return not username.isalnum()
+
+# Splitgate is only available on Steam/PC, Xbox and PlayStation
+def invalid_platform(platform):
+    return platform not in ['steam', 'xbl', 'psn']
