@@ -7,7 +7,7 @@ app = Flask(__name__)
 url = "https://public-api.tracker.gg/v2/splitgate/standard/profile"
 header = {'TRN-Api-Key':os.getenv('api_key')}
 
-@app.route('/')
+@app.route('/splitgate/v1/playerStats')
 def home():
     args = request.args
 
