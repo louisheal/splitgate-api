@@ -12,4 +12,4 @@ Username is the username of your account on that platform: SteamID64 for Steam/P
 
 For example, to access LJRex's Splitgate stats on Steam, you would make the following web request:
 
-`GET https://splitgate-api.onrender.com/?platform=steam&username=76561198059390699`
+`GET https://splitgate-api.onrender.com/splitgate/v1/playerStats/?platform=steam&username=76561198059390699`
